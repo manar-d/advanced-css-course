@@ -6,3 +6,303 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/*    * {} body {}  is a basic reset  */
+
+/* universal selector  * {} */
+* {
+    /*  need it to start clean Without intervention تدخل  from the browser*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*  
+    px تحويل الـ
+    Browser عشان نسهل علينا وتختصر الكود بإن يكون تحديد الخط بناء على عحسابات الــــ  rem الى
+    
+  */
+
+html {
+/* What we want is 16 pixels, and so it's very simple.
+All we have to do is to divide what we want,
+which is 10, by 16.So I'm having a calculator here,
+so 10 divided by 16 is 62.5%, and that is what we're putting here.
+62.5%, and that's it, that's the whole technique.
+ */
+    /* font-size: 10px; */
+    font-size: 62.5%;
+    
+}
+
+body {
+    /* put font staff like font-family in body And why do we do it this way? (in body selector )
+    Well, we do it because the properties related to font are usually inherited,
+    so we're using the power of inheritance here. */
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /*  
+    10px root (html)   نوقفها عشان نسهل الطريق ونحط 
+    بحيث يكون لكل 
+    10px to 1 rem 
+    */
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: #777;
+    /* padding: 30px; تقسمه على عشره يصير 3 */
+    padding: 3rem;
+}
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right bottom,
+            rgba(126, 213, 111, 0.8),
+            rgba(40, 180, 133, 0.8)),
+        url(../img/hero.jpg);
+    /*  what cover does is that whatever the width of the viewport, or the element, 
+    it'll always try to fit the element inside of the box. */
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75vh, 0 100%);
+    /* to let  (position: absolute; top: left: 40px) in logo-box work use relative here */
+    position: relative;
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+}
+
+/* if we want animation to happen when we hover on  logo  */
+/* 
+NOT WORK :|
+ هذي ماتشتغل بس في طريقه نفس الي تحت 
+.logo-box:hover .logo
+*/
+/* .logo:hover { 
+    animation: moveInRight 5s ease-out;
+} */
+/* .logo-box:hover .logo {
+    animation: moveInRight 0.6s ease-in;
+ }  */
+
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* background-color: blue; */
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+.heading-primary {
+    color: #ffffff;
+    text-transform: uppercase;
+    /* This backface-visibility property determines if the back part of the element when we transform it is visible or hidden for the user. */
+    /* we use this this hack in order to fix this little shaking that we see in the animation. */
+    backface-visibility: hidden;
+    /* مسافه بي النص والزر */
+    margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    /* So let's now actually apply this animation. And so for an animation to work,
+    there are only two properties Which one called animation-name, which is the name of the animation we just wrote ( moveInLeft ). and two callwd animation duration.  */
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+
+    /* animation-delay < propertiesلو نبغى نأخر الحركه كم ثانيه استخدم هذي ال */
+    /* animation-delay: 3s; */
+
+    /* animation-iteration-count : mean the animation will simply happen three times. */
+    /* animation-iteration-count : 3; */
+
+    /* animation-timing-function : So this is a function which defines how the animation will proceed.
+        how fast or how slow these parameters that we specified here happen over time. And there are different built-in animation functions like ease-out*/
+    animation-timing-function: ease-out;
+
+
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+
+    /* animation-name: moveInRight;
+    animation-duration: 5s;
+    animation-timing-function: ease-out; 
+    
+    animation بدل ماستخدمهم الثلاث اقدر استخدم شي واحد الي هو 
+    ولما تحطين القيمه هو من نفسه راح يعرف كل قيمة وش تعني  
+    */
+
+    animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+
+    /* were the animation start 0% */
+    0% {
+        /* عشان يكون مخفي في البدايه */
+        opacity: 0;
+        /* transform  translateX. And why x? Well, because we want it to animate in the x-direction. ----------   */
+        /* So remember, the x-direction is go from left to right,
+           and the y-direction, or axis, goes from the top to the bottom. */
+        /* Why negative - 100% * px not % ? Because, remember that the direction goes from left to right.
+           So a positive value means it goes to the right, and negative value means it goes to the left. */
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        /* هنا عشان يرتد كم سانتي لليسار قبل مايوقف  */
+        transform: translateX(1rem);
+    }
+
+    /* were the animation end 100% */
+    100% {
+        /* عشان يكون ظاهر في النهاية */
+        opacity: 1;
+
+        /* How do we want it to be when we are at 100%? 
+        We simply want it to look the way that it looks now, right?
+        And so we say translate zero. transform: translate(0);
+        And why zero? Well because, if we translate at zero,
+        then it's gonna look exactly the way that it looks right now. */
+
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+
+    }
+
+    100% {
+
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* Pseudo-class : are used to add styles to selectors, but only when those selectors meet certain conditions. like a:hover{} */
+/*  pseudo-classes are a special state of a selector. So this link here is a state of the button selector. */
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* padding at the top and at the bottom of */
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /* we should always do this if we want to give some paddings or some heights or width to inline elements */
+    /* transform or postion  عشان اخليها في المنتصف اقدر استخدم  
+    بس راح يعقد السأله وهي ماتستدعي ، كيف احلها هي 
+    inline element
+    واستخدم parent بمعنى انها كنص عشان كذا اروح لل
+    text align 
+    والي هو .text-box{  text-align: center; }
+    ليه مانحطه هنا لانه ماراح يأثر هنا 
+    */
+    border-radius: 10rem;
+    transition: all .2s;
+
+    position: relative;
+    font-size: 1.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+/* virtial content بحيث يطابق الزر ونقدر نتحكم فيه فراح نسوي فيع كـ الزر حقنا مع تعديلات */
+.btn::after {
+    content: "";
+    display: inline-block;
+    /* And this works because the after pseudo-element is basically treated like a child of the button.
+    And so if we say that we want the height to be 100%, that's 100% of the width of the button.*/
+    width: 100%;
+    height: 100%;
+    border-radius: 10rem;
+    /* Now remember that this absolute positioning needs to have a reference.
+    And the reference is the first element with the relative position that it can find.
+    Now in this case it would be the header because remember we did that before.
+    But we don't want it to be the header. We want it to be hidden after the button.
+    And so, the reference should be the button. Therefore, what we have to do
+    is to set the position property of the button to relative. Alright. so we put     position: relative; on .btn:link, .btn:visited { } to let .btn::after {} behiend */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* the z index defines the position of the elements if they are one on top of another. */
+    z-index: -1;
+    /*  it's definitely behind the button. Now since it's hidden, */
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+
+.btn:hover::after {
+    /* afterهنا في شرط اذا مررت السهم عليه طلع ال  */
+    /*  
+    transform: scale(1.5);  <- هنا يصير التوسع على كل العنصر  
+    transform: scaleX(1.4) scaleY(1.6); <- X وY هنا نقدر نحدد التوسع من جهة العنصر  
+    */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn--animated {
+    animation: moveInBottom 0.5s ease-out .75s;
+    /* تعني تأخير .٧٥*/
+    /* it is meathat it will automatically apply the styles up to zero percent before the animation starts. */
+    animation-fill-mode: backwards;
+}
